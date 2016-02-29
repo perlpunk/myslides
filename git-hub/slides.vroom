@@ -1,0 +1,40 @@
+# run `vroom vroom` to start the show!
+#
+# See `perldoc Vroom` for complete details.
+#
+---- config
+# Basic config options.
+title: git-hub
+indent: 4
+auto_size: 1
+# height: 18
+# width: 69
+vim_opts: '-u NONE'
+skip: 0
+
+---- center
+== git-hub
+
+Using github without a browser
+
+Tina Müller, STRATO AG
+German Perl Workshop 2016, Nuernberg
+
+----
+== Creating repos
+
+* git hub repo-init, repo-new
++* git hub repo-init mycoolstuff:
++* Creates directory
++* Creates repo on github
++* Clones repo
++* media/repo-init.ogv
+
+----
+== Handling Pull Requests
+
+* git hub pr-list, pr-diff, pr-fetch
++* git hub pr-list: List pull requests for current repo
++* git hub pr-diff num: Show diff for pull request
++* git hub pr-fetch num: Fetch the pull request into a local branch
++* media/pr-fetch.ogv
