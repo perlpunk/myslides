@@ -14,11 +14,12 @@ map EE :e <cWORD><CR>
 map !! G:!open <cWORD><CR><CR>
 map ?? :e .help<CR>
 set laststatus=2
-set statusline=%-20f\ git-hub
+set statusline=%-20f\ git-hub\ -\ https://github.com/ingydotnet/git-hub
 
 " Overrides from /home/tina/.vroom/vimrc
 map OO :!eog <cWORD><CR><CR>
 map OV :!mplayer <cWORD><CR><CR>
+map OG G?.<CR>0w
 
 
 " Values from slides.vroom config section. (under 'vimrc')

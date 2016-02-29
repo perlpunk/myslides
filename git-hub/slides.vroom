@@ -4,7 +4,7 @@
 #
 ---- config
 # Basic config options.
-title: git-hub
+title: git-hub - https://github.com/ingydotnet/git-hub
 indent: 4
 auto_size: 1
 # height: 18
@@ -21,20 +21,56 @@ Tina Müller, STRATO AG
 German Perl Workshop 2016, Nuernberg
 
 ----
+== Doing everything from the commandline
+
+* Many people use git
++* Many of those use it from the commandline
++* Many of those use github
++* Many of those switch to the browser for viewing issues, creating
+  or merging pull requests
++* That's not necessary =)
+  There's https://github.com/ingydotnet/git-hub
++* Written in, er, bash
+
+----
+
+ % git hub repo ingydotnet/git-hub
+ Full Name       ingydotnet/git-hub
+ Description:
+  Do GitHub operations from the `git` command
+ Language        Shell
+ GitHub Page     https://github.com/ingydotnet/git-hub
+ Remote URL      git@github.com:ingydotnet/git-hub.git
+ Forks           36
+ Stars           653
+ Open Issues     60
+ Pushed At       2016-03-08 15:47:55
+ Created At      2013-07-19
+
+----
 == Creating repos
 
 * git hub repo-init, repo-new
 +* git hub repo-init mycoolstuff:
-+* Creates directory
-+* Creates repo on github
-+* Clones repo
-+* media/repo-init.ogv
++ * Creates directory
++ * Creates repo on github
++ * Clones repo
++ * media/repo-init.ogv
 
 ----
 == Handling Pull Requests
 
 * git hub pr-list, pr-diff, pr-fetch
-+* git hub pr-list: List pull requests for current repo
-+* git hub pr-diff num: Show diff for pull request
-+* git hub pr-fetch num: Fetch the pull request into a local branch
++* git hub pr-list [user/repo]: List pull requests for current repo
++* git hub pr-diff [user/repo] num: Show diff for pull request
++* git hub pr-fetch [user/repo] num: Fetch pull request into a local branch PR/num
++* git hub issue-resolve [user/repo] num:
+  Write a comment and close issue
 +* media/pr-fetch.ogv
+
+----
+== Commenting issues
+
+* git hub comment [user/repo] num: Write a comment
+* media/issue-comment.ogv
+
