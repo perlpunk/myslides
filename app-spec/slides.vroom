@@ -1,0 +1,275 @@
+# This is a sample Vroom input file. It should help you get started.
+#
+# Edit this file with your content. Then run `vroom vroom` to start
+# the show!
+#
+# See `perldoc Vroom` for complete details.
+#
+---- config
+# Basic config options.
+title: App::Spec - https://github.com/perlpunk/App-Spec-p5
+indent: 5
+auto_size: 1
+# height: 18
+# width: 69
+vim_opts: '-u NONE'
+skip: 0
+
+# The following options are for Gvim usage.
+# vim: gvim
+# gvimrc: |
+#   set fuopt=maxhorz,maxvert
+#   set guioptions=egmLtT
+#   set guifont=Bitstream_Vera_Sans_Mono:h18
+#   set guicursor=a:blinkon0-ver25-Cursor
+#   colorscheme default
+
+---- center
+== App::Spec
+
+== Writing command line tools made easy
+
+German Perl Workshop 2016
+
+Tina Müller, STRATO AG
+
+----
+
+== Good command line tools
+
+* Good usage output
++* Good usage error messages
++* Useful shell tab completion
++ * Advanced tab completion
++* Good man pages
++* Argument validation
+
++And a good command line framework can help you with all of these things!
+
+----
+
+== Existing Command Line Frameworks
+
+* Getopt::Long
++* Getopt::Long::Descriptive
++* Getopt::Long::DescriptivePod
++* Pod::Usage
++* App::Cmd
++* MooseX::App
++* MooseX::App::Cmd
++* MouseX::App::Cmd
++* MooX::Cmd
++* Applify
++* ???
+
+----
+
+== So why did I want to reinvent the wheel?
+
++* Hmm.... Fun?
++* Because there is no complete wheel yet, only parts that mostly don't
+  fit together
++* I learned how to write zsh completion last june
++* media/git-hub-completion-*.png
++* I was thinking of a command line tool for which completion would be essential
++* used MooseX::App
++* wrote MooseX::App::Plugin::ZshCompletion
++* decided against MooseX::App
++* now choose another one and write zsh completion, or write my own?
++* because media/metacpan-zsh.png
+
+----
+
+== App::Spec
+
+https://github.com/perlpunk/App-Spec-p5
+
+* App::Spec is a specification schema.
++ * Currently you can provide it as a YAML file or directly as
+   a perl data structure
+
++* App::Spec::Run runs your app specified with App::Spec
++ * This is what the user of your app has to install
++ * It supports (nested) subcommands
++ * Options, Parameters
++ * Validation of options and parameters
++ * Shell tab completion (bash and zsh) for
++  * Subcommands
++  * Options, Option values, Parameter values
++  * Dynamic completion
+
++* App::AppSpec is a tool for app authors.
++ * It generates pod and shell completion
++   % appspec completion myapp-spec.yaml --zsh > /path/to/zsh/_myapp
++   % appspec pod myapp-spec.yaml > /path/to/pod/myapp.pod
++ * It can be used to validate your spec against the schema
+
+---- yaml, i4
+
+== Example
+
+---
+name: myapp
+appspec: { version: 0.001 }
+class: App::MyApp
+title: My Very Cool App
+# global options
+options:
+- name: verbose
+  type: flag
+  summary: Be verbose
+subcommands:
+  frobnicate:
+    summary: Frobnicate something
+    op: frobnicate
+    options: ...
+    parameters: ...
+    subcommands: ...
+
+
+----
+
+== Usage output
+
+---- yaml, i4
+
+== Completion: static enums
+
+---
+subcommands:
+  cook:
+    summary: Cook something
+    op: cook
+    parameters:
+      -
+        name: drink
+        required: true
+        type: string
+        enum: ["tea", "coffee"]
+    options:
+      -
+        name: with
+        description: Drink with ...
+        type: string
+        enum: ["almond milk", "soy milk", "oat milk", "spelt milk", "cow milk"]
+      -
+        name: sugar
+        type: flag
+        aliases: ["s"]
+        description: add sugar
+
+---- yaml, i4
+
+== Dynamic Completion: external command
+
+---
+palindrome:
+  summary: Check if a string is a palindrome
+  op: palindrome
+  parameters:
+  - name: string
+    required: true
+    completion:
+      command_string: |
+        cat /usr/share/dict/words | perl -nle'print if $_ eq reverse $_'
+
+---- yaml, i4
+
+== Dynamic Completion: Specify a method in your app
+
+convert:
+  summary: Various unit conversions
+  op: convert
+  parameters:
+  - name: type
+    summary: The type of unit to convert
+    type: string
+    required: true
+    completion:
+      op: convert_complete
+  - name: source
+    summary: The source unit to convert from
+    type: string
+    required: true
+    completion:
+      op: convert_complete
+  - name: value
+    summary: The value to convert
+    required: true
+    type: string
+  - name: target
+    summary: The target unit
+    type: string
+    required: true
+    multiple: true
+    completion:
+      op: convert_complete
+
+---- perl, i4
+
+== Dynamic Completion: Specify a method in your app
+
+sub convert_complete {
+    my ($self, $args) = @_;
+    my $completion = $args->{completion} or return;
+    my $comp_param = $completion->{parameter};
+    my $param = $self->parameters;
+
+    if ($comp_param eq 'type') {
+        return [sort keys %units];
+    }
+    elsif ($comp_param eq 'source') {
+        my $type = $param->{type};
+        my $units = $units{ $type };
+        return [map {
+            +{ name => $_, description => $units->{ $_ }->{label} }
+        } keys %$units];
+    }
+    elsif ($comp_param eq 'target') {
+        my $type = $param->{type};
+        my $source = $param->{source};
+        my $value = $param->{value};
+        my $units = $units{ $type };
+        my @result;
+        for my $unit (sort keys %$units) {
+            next if $unit eq $source;
+            my $label = $units->{ $unit }->{label};
+            my $key = $source . '_' . $unit;
+            my $sub = $conversions{temperature}->{ $key };
+            my $result = $sub->($value);
+            push @result, {
+                name => $unit,
+                description => "$result$label",
+            };
+        }
+        return \@result;
+    }
+}
+
+----
+
+So what still needs to be implemented?
+
++* Lots! This would deserve another talk I guess ;-)
++* Add more shells
++* Support app command plugins
++* Dist::Zilla plugin that does pod and completion generation at build time
++* Ports to other languages...
++* I recently started to port it to...
++* No, not Perl 6. That's on my todo list though
+
+----
+
+== Bash
+
++* So how do we parse the spec?
++* There is no YAML parser in bash because nobody wants to write one
++* Even Ingy doesn't want to write one. Go figure
++* So I convert the spec to JSON.
++* Yes, there is a JSON parser in bash:
++* github.com:ingydotnet/json-bash.git
++* I'm even able to write tests because there is:
++* github.com:ingydotnet/test-more-bash.git
++* To be able to do `use Test::More tests 23` you need bash+
++* github.com:ingydotnet/bashplus.git
++* So the bash port is a very ingy-dependent project ;-)
