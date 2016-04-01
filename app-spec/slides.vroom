@@ -31,6 +31,8 @@ skip: 0
 
 German Perl Workshop 2016
 
+Dutch Perl Workshop 2016
+
 Tina Müller, STRATO AG
 
 ----
@@ -211,8 +213,10 @@ convert:
 
 sub convert_complete {
     my ($self, $args) = @_;
-    my $completion = $args->{completion} or return;
-    my $comp_param = $completion->{parameter};
+    my $runmode = $args->{runmode};
+    return if ($runmode ne "completion" and $runmode ne "validation");
+    my $comp_param = $args->{parameter};
+
     my $param = $self->parameters;
 
     if ($comp_param eq 'type') {
