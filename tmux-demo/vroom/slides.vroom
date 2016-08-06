@@ -1,0 +1,81 @@
+# Edit this file with your content. Then run `vroom vroom` to start
+# the show!
+#
+# See `perldoc Vroom` for complete details.
+#
+---- config
+# Basic config options.
+title: https://tmux.github.io/
+indent: 5
+auto_size: 1
+# height: 18
+# width: 69
+vim_opts: '-u NONE'
+skip: 0
+
+# The following options are for Gvim usage.
+# vim: gvim
+# gvimrc: |
+#   set fuopt=maxhorz,maxvert
+#   set guioptions=egmLtT
+#   set guifont=Bitstream_Vera_Sans_Mono:h18
+#   set guicursor=a:blinkon0-ver25-Cursor
+#   colorscheme default
+
+---- center
+Goodbye screen, hello tmux!
+
+Tina Müller, STRATO AG
+YAPC::Europe 2016 Cluj
+----
+== tmux
+
+* is a terminal multiplexer like screen
++* Some concepts are quite different though
++* For example, ...
+
+----
+== Windows in screen
+
+ +---------------------+  +---------------------+  +---------------------+
+ | window 0            |  | window 1            |  | window 2            |
+ |                     |  |                     |  |                     |
+ |                     |  |                     |  |                     |
+ |                     |  |                     |  |                     |
+ |                     |  |                     |  |                     |
+ +---------------------+  +---------------------+  +---------------------+
+
+----
+== Split screen in screen
+
+ +---------------------+
+ | window 0 | window 4 |
+ |          |          |
+ |          |----------|
+ |          | window 7 |
+ |          |          |
+ +---------------------+
+
+----
+== Windows and Panes in tmux
+
+
+   window 0                   window 1                 window 2
+ +---------------------+  +--------------------+  +---------------------+
+ | pane 0  | pane 1    |  | pane 1             |  | pane 0   | pane 1   |
+ |         |           |  |                    |  |          |          |
+ |         |           |  |                    |  |          |          |
+ |         +-----------|  |                    |  |          |          |
+ |         | pane 2    |  |                    |  |          |          |
+ |         |           |  |                    |  |__________|__________|
+ |         |           |  |                    |  | pane 2              |
+ +---------------------+  +--------------------+  +---------------------+
+
+
+
+----
+== Links
+
+* https://tmux.github.io/
+* https://perlpunk.github.io/tmuxtutor/
+* https://github.com/perlpunk/tmux-version-switcher

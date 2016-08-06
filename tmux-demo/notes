@@ -1,0 +1,20 @@
+PREFIX
+~
+t
+Commands:
+PREFIX + t
+PREFIX + :clock-mode
+tmux clock-mode
+tmux clock-mode -t sessionname:x.y
+
+Windows:
+c, w, ', 0,1,2,..., l, n, p
+swap
+window title ,
+activity
+
+Panes:
+%, ", ;, o, q, arrow
+swap { }
+Zoom z
+resize
