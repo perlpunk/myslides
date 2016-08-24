@@ -39,6 +39,13 @@ YAPC::Europe Cluj-Napoca 2016
 Tina Müller, STRATO AG
 
 ----
+== What kind of presentation software is this?
+
+Vroom: https://metacpan.org/release/Vroom
+
+Write your slides in vim and present them in vim
+
+----
 
 == Good command line tools
 
