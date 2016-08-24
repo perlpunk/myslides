@@ -287,3 +287,12 @@ So what still needs to be implemented?
 +* To be able to do `use Test::More tests 23` you need bash+
 +* github.com:ingydotnet/bashplus.git
 +* So the bash port is a very ingy-dependent project ;-)
+
+----
+== API::CLI
+
++* A tool which uses OpenAPI and App::Spec for making API calls
+   on the command line
++* Possible endpoints are completed by the shell
+
+
