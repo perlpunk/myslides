@@ -1,0 +1,84 @@
+# Edit this file with your content. Then run `vroom vroom` to start
+# the show!
+#
+# See `perldoc Vroom` for complete details.
+#
+---- config
+# Basic config options.
+title: German speaking Perl Community
+indent: 5
+auto_size: 1
+# height: 18
+# width: 69
+vim_opts: '-u NONE'
+skip: 0
+
+# The following options are for Gvim usage.
+# vim: gvim
+# gvimrc: |
+#   set fuopt=maxhorz,maxvert
+#   set guioptions=egmLtT
+#   set guifont=Bitstream_Vera_Sans_Mono:h18
+#   set guicursor=a:blinkon0-ver25-Cursor
+#   colorscheme default
+
+---- center
+
+German speaking Perl Community
+
+This presentation uses Vroom: https://metacpan.org/release/Vroom
+
+----
+== Berlin.pm
+
++* Meetings since 2002
++* 118 Mailing list subscribers
++* 8-10 people on average at meetings
++* We usually do only social meetings
++* But we organized the German Perl Workshop 2013!
++* We try to meet at a new location every month
++* A history of all our meetings on a map can be found here:
+   http://berlin.pm.org/history_map.html
+
+----
+== perl-community.de
+
++* Started around 2003
++* Board was running previously on perl.de, but the domain was sold to
+   someone wanting to make money with it, so we got our own domain and
+   moved the whole community there
++* The number of threads is decreasing =( but this seems to happen to
+   other perl boards too
++* Board is running on perl with a software created by me and community
+   members.
+
+
+----
+== perl-community.de Software
+
++* It has a couple of nice features (I think!)
++* Threads are trees (like on reddit or perlmonks)
++* You can immediately see which thread messages you haven't read yet
++* Headlines in a thread are colored by age
++* Navigating in a long thread is easy with a navigator item on the left
++* Uses some javascript, but usable without
++* It's fast!
++* Unfortunately it's a hell to install because of lack of documentation
+    and utilities
+
+----
+== perl-community.de
+
++* we started the IRC channel #perlde
+
+----
+== irc.perl.org #perlde
+
++* Anyone who speaks german or wants to learn it, you are welcome
+   to join our channel
++* In contrast to topic channels, people just hang around and
+   talk about any (perl) topic
++* If you are having a programming problem, just drop your question
+   there, and eventually someone will help
++* not much traffic usually. you can change that!
+
