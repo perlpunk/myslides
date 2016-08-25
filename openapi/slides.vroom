@@ -1,0 +1,130 @@
+# Edit this file with your content. Then run `vroom vroom` to start
+# the show!
+#
+# See `perldoc Vroom` for complete details.
+#
+---- config
+# Basic config options.
+title: Developing a REST API with OpenAPI/Swagger github:perlpunk/dancer-swagger-example-p5
+indent: 5
+auto_size: 1
+# height: 18
+# width: 69
+vim_opts: '-u NONE'
+skip: 0
+
+# The following options are for Gvim usage.
+# vim: gvim
+# gvimrc: |
+#   set fuopt=maxhorz,maxvert
+#   set guioptions=egmLtT
+#   set guifont=Bitstream_Vera_Sans_Mono:h18
+#   set guicursor=a:blinkon0-ver25-Cursor
+#   colorscheme default
+
+---- center
+Why you want to use OpenAPI for your REST API
+
+
+YAPC::Europe Cluj-Napoca 2016
+
+Tina Müller, STRATO AG
+
+----
+== What's the OpenAPI Spec?
+
++* Formerly known as Swagger
++* The company maintaining Swagger donated the spec to the
+   OpenAPI Initiative: https://openapis.org/
++* You describe your API with a JSON or YAML document
++* This document can be used for documentation, generating
+   routes for you web framework, providing an interface for
+   manually testing API calls in a GUI
++* The input and output is specified with JSON Schema:
+   http://json-schema.org/
+
+---- yaml
+== Example
+
+---
+swagger: "2.0"
+info:
+  title: Restaurant API
+  version: "1.0"
+paths:
+  /menu:
+    get:
+      operationId: get_menu
+      parameters:
+        - name: category
+          in: query
+          required: false
+          type: string
+          enum: [main, drinks]
+
+      responses:
+        200:
+          description: Menu Overview
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/MenuItemShort"
+
+
+----
+== Why not use RAML/Blueprint/...?
+
++* I didn't say that ;-)
++* But you should be using a kind of specification
++* Because the spec servers several purposes,
++** Documentation is likely less to get out of date
++** You need to write less code
+
+----
+== RAML
+
++* It looks similar
++* also uses JSON Schema
++* Differences:
++** You can specify "traits" (for example queryParameters)
+    which can be applied to several endpoints, so you don't
+    have to repeat them.
+    (If you're using YAML you can also avoid repeating
+    things via YAML aliases)
++** You can define different output schemas per content-type
++** probably more...
+
+----
+== Mojolicious::Plugin::OpenAPI
+
++* Written by Jan Henning Thorsen
++* He also wrote the Swagger2 and JSON::Validator modules
++* Ready to use
++* Was the base for our port to Dancer2
+
+----
+== Dancer2::Plugin::Swagger2
+
+(probably about to be renamed)
+
++* It uses Swagger2 and JSON::Validator
++* First version written bei Daniel Böhmer during his
+   work at STRATO AG who will support further development
++* You can use it already to play around; basics should
+   be working, but there still are things to implement,
+   especially since Jan Henning restructured his modules
+   after Swagger was changed to OpenAPI
++* So use it but expect there will be changes
+
+----
+== Example how to add OpenAPI for a Dancer2 API
+
++* github:perlpunk/dancer-swagger-example-p5
++* Clone it and go through the commits to see what steps
+   are done to add the spec, the plugin and the
+   Swagger UI frontend
++** It generates Dancer routes for you
++** Before delegating to your method, it validates the input
++** You return a data structure and it validates this too
++** The Swagger UI is a Javasccript frontend where you can see
+    all the endpoints, fill out parameters and try out the calls
