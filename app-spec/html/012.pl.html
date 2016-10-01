@@ -1,0 +1,75 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "011.yaml" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "013" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>              Dynamic Completion: Specify a method in your app
+
+    sub convert_complete {
+        my ($self, $args) = @_;
+        my $runmode = $args-&gt;{runmode};
+        return if ($runmode ne &quot;completion&quot; and $runmode ne &quot;validation&quot;);
+        my $comp_param = $args-&gt;{parameter};
+
+        my $param = $self-&gt;parameters;
+
+        if ($comp_param eq 'type') {
+            return [sort keys %units];
+        }
+        elsif ($comp_param eq 'source') {
+            my $type = $param-&gt;{type};
+            my $units = $units{ $type };
+            return [map {
+                +{ name =&gt; $_, description =&gt; $units-&gt;{ $_ }-&gt;{label} }
+            } keys %$units];
+        }
+        elsif ($comp_param eq 'target') {
+            my $type = $param-&gt;{type};
+            my $source = $param-&gt;{source};
+            my $value = $param-&gt;{value};
+            my $units = $units{ $type };
+            my @result;
+            for my $unit (sort keys %$units) {
+                next if $unit eq $source;
+                my $label = $units-&gt;{ $unit }-&gt;{label};
+                my $key = $source . '_' . $unit;
+                my $sub = $conversions{temperature}-&gt;{ $key };
+                my $result = $sub-&gt;($value);
+                push @result, {
+                    name =&gt; $unit,
+                    description =&gt; &quot;$result$label&quot;,
+                };
+            }
+            return \@result;
+        }
+    }
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "05e" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "06" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+
+                           Handling Pull Requests
+
+    * git hub pr-list, pr-diff, pr-fetch
+    * git hub pr-list [user/repo]: List pull requests for current repo
+    * git hub pr-diff [user/repo] num: Show diff for pull request
+    * git hub pr-fetch [user/repo] num: Fetch pull request into a local branch PR/num
+    * git hub issue-resolve [user/repo] num:
+      Write a comment and close issue
+    * media/pr-fetch.ogv
+
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>

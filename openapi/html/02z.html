@@ -1,0 +1,57 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "02e" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "03.yaml" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+
+                          What's the OpenAPI Spec?
+
+     * Formerly known as Swagger
+     * The company maintaining Swagger donated the spec to the
+        OpenAPI Initiative: https://openapis.org/
+     * You describe your API with a JSON or YAML document
+     * This document can be used for documentation, generating
+        routes for you web framework, providing an interface for
+        manually testing API calls in a GUI
+     * The input and output is specified with JSON Schema:
+        http://json-schema.org/
+
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>

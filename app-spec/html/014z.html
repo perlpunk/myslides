@@ -1,0 +1,57 @@
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+function navigate(e) {
+    var keynum = (window.event) // IE
+        ? e.keyCode
+        : e.which;
+    if (keynum == 8) {
+        window.location = "014k" + ".html";
+        return false;
+    }
+    if (keynum == 13 || keynum == 32) {
+        window.location = "015" + ".html";
+        return false;
+    }
+    if (keynum == 73 || keynum == 105) {
+        window.location = "index.html";
+        return false;
+    }
+    return true;
+}
+</script>
+</head>
+<body onkeydown="return navigate(event)">
+<div style="border-style: solid ; border-width: 2px ; font-size: x-large">
+<pre>
+
+
+                                    Bash
+
+     * So how do we parse the spec?
+     * There is no YAML parser in bash because nobody wants to write one
+     * Even Ingy doesn't want to write one. Go figure
+     * So I convert the spec to JSON.
+     * Yes, there is a JSON parser in bash:
+     * github.com:ingydotnet/json-bash.git
+     * I'm even able to write tests because there is:
+     * github.com:ingydotnet/test-more-bash.git
+     * To be able to do `use Test::More tests 23` you need bash+
+     * github.com:ingydotnet/bashplus.git
+     * So the bash port is a very ingy-dependent project ;-)
+
+
+
+
+
+
+</pre>
+</div>
+<br>
+<div style="font-size: small">
+<p></p>
+</div>
+</body>
+</html>
