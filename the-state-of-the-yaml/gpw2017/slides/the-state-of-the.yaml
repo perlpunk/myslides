@@ -1,0 +1,924 @@
+---
+title: The State of The YAML
+content: |
+  [title]The State of The YAML™[/title]
+  [list]
+  [*]Where: German Perl Workshop 2017, Hamburg
+  [*]When: June 26th-28th 2017
+  [*]Author: Tina Müller
+  [/list]
+---
+title: About Me
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]I wrote my first perl code in 1998
+  [*]Until 2015, any shell script that got bigger then 3 lines, I would convert to perl
+  [*]I had used tmux, but never done any remote pair programming
+  [*]I thought I know a lot of vim and tmux already
+  [*]Then, at the Perl QA Hackathon 2015, I met Ingy
+  [/list]
+  [h1 animation="6,appear"][img=ingy-pqah2015.jpg]ingy[/img][/h1]
+---
+title: Working with Ingy
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Since then, we have been hacking together a lot, mostly remotely
+  [*]Ingy has a new idea every day
+  [*]and if he had the time, he would learn a new programming language every day
+  [*]Ingy is one of the three inventors of YAML
+  [*]So it was just a matter of time until I got in touch with YAML stuff
+  [/list]
+---
+title: What's YAML?
+content: |
+  [title][/title]
+  [horizontal][codeboxsmall]
+  Birthday Party
+
+  - Invite friends:   important!!
+     Benny & Joon: ask if they can
+                   bring a cake
+     Harold & Maude: might bring a salad
+  - Drinks: Juice, Coke, Beer,
+  - Food:
+    - African Peanut Stew:
+       White beans, green beans, carots,
+       peas, onions, pepper, unsugared
+       peanut butter, tahini, tomate paste,
+       garlic, cumin, fenugreek, ginger,
+       mustard seeds, coriander
+  [/codeboxsmall][codeboxsmall animation="1,appear"]
+  [color=fuchsia animation="2,appear"]#[/color] Birthday Party
+  [color=fuchsia animation="2,appear"]---[/color]
+  - Invite friends:   [color=fuchsia animation="2,appear"]!!important[/color]
+     Benny & Joon: ask if they can
+                   bring a cake
+     Harold & Maude: might bring a salad
+  - Drinks: [color=fuchsia animation="2,appear"][[/color]Juice, Coke, Beer,[color=fuchsia animation="2,appear"]][/color]
+  - Food:
+    - African Peanut Stew:
+       [color=fuchsia animation="2,appear"][[/color]White beans, green beans, carots,
+       peas, onions, pepper, unsugared
+       peanut butter, tahini, tomate paste,
+       garlic, cumin, fenugreek, ginger,
+       mustard seeds, coriander[color=fuchsia animation="2,appear"]][/color]
+  [/codeboxsmall][/horizontal]
+---
+title: YAML Design
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]YAML is a data serialization language
+  [*]It's easy to read and write for humans
+  [*]It's TIMTOWTDI
+  [*]It has more features than JSON, for example
+  [*]JSON is actually (almost!) a subset of YAML 1.2
+  [*]YAML is also more complicated to parse than JSON
+  [/list]
+---
+title: The Problem
+content: |
+  [h1]The Problem[/h1]
+  [br][br]
+  [h2]Obviously, a [i]more complicated[/i] syntax will result in [i]less[/i] implementations getting it right.[/h2]
+---
+title: What's this talk about?
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]It's not teaching YAML
+  [*]I'm trying to show why it is a complicated format
+  [*]...and what we can do about it
+  [*]So no worries if you don't understand some examples
+  [/list]
+---
+title: Legend
+content: |
+  [h1]Legend[/h1]
+  [codebox]---
+  String[tab]	[/tab]with[tab]	[/tab]tabs: value with trailing spaces[trspace]    [/trspace]
+  map:      [comment]# comment[/comment]
+  [indent]  [/indent]Indentation
+  [/codebox]
+---
+title: Indentation
+content: |
+  [h1]Indentation[/h1]
+  What characters can be used for indentation?
+  [list animation="1,appear"]
+  [*]Spaces
+  [*]Tabs? No.
+  [*]Well, let's talk about that in a minute
+  [*]Dashes
+  [*]Wait, dashes?
+  [/list]
+---
+title: Sequence Indentation
+content: |
+  [h1]Sequence Indentation[/h1]
+  [list animation="1,greyin"]
+  [*]Dashes (or more correctly hyphens) create a sequence entry
+  [*]The dash is part of the indentation
+  [*]That's why both documents are valid
+  [*]YAML.pm parses this as invalid, most other frameworks can do this
+  [/list]
+  [horizontal][codebox]---
+  a list of things:
+  [indent]  - [/indent]a
+  [indent]  - [/indent]b
+  [indent]  - [/indent]c
+  [/codebox][codebox]---
+  a list of things:
+  [indent]- [/indent]a
+  [indent]- [/indent]b
+  [indent]- [/indent]c
+  [/codebox][/horizontal]
+---
+title: Sequence Indentation and Dashes
+content: |
+  [h1]Sequence Indentation and Dashes[/h1]
+  [list]
+  [*]The spec actually allows tabs behind the dash
+  [*]Frameworks that don't do this: libyaml, snakeyaml, ruby psych, ruamel, YAML.pm and more.
+  [/list]
+  [codebox]---
+  a list of things:
+    -[tab]	[/tab]a
+    - b
+    - c[/codebox]
+---
+title: Null values
+content: |
+  [h1]Null values[/h1]
+  How do you express null values?
+  [br]
+  [codebox]---
+  a: ~    [comment]# tilde[/comment]
+  b: null [comment]# plain "null"[/comment]
+  c:      [comment]# empty[/comment]
+  [/codebox]
+---
+title: Null keys
+content: |
+  [h1]Null keys[/h1]
+  How do you express a mapping key with a null value?
+  [br]
+  [codebox]---
+  ~: a    [comment]# tilde[/comment]
+  null: b [comment]# plain "null"[/comment]
+  : c     [comment]# empty[/comment]
+  [/codebox]
+  [br]
+  Frameworks that complain about the empty key:
+  libyaml, YAML.pm, YAML::Tiny, ruby psych, ruamel, YAML::Syck and more
+---
+title: Aliases & Anchors
+content: |
+  [h1]Aliases & Anchors[/h1]
+  [list animation="1,greyin"]
+  [*]You can attach an &anchor to any node
+  [*]This includes mapping keys
+  [*]You can refer to it with an *alias
+  [*]The anchor must be followed by a line break unless the node is a scalar
+  [*]js-yaml has problems with mapping key anchors
+  [/list]
+  [codebox]---
+  a mapping: [anchor]&map[/anchor]
+    [anchor]&key[/anchor] a: [anchor]&value[/anchor] b
+  the same mapping: [alias]*map[/alias]
+  key a: [alias]*key[/alias]
+  value b: [alias]*value[/alias]
+  [/codebox]
+---
+title: Anchors and Tags
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Tags follow the same syntax rules as Anchors
+  [*]A node can have one anchor and one tag
+  [*]Order does not matter
+  [*]You can add newlines between them
+  [/list]
+---
+title: Examples of Anchors and Tags
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Example 1: Anchor and Tag on same line
+  [*]Example 2: Anchor and Tag on multiple lines (except mapping keys)
+  [/list]
+  [horizontal][codebox animation="2,appear"]--- # Example 1
+  key: [color=blue]!tag &anchor[/color]
+    [color=lime]&a !t[/color] a: 1
+  [/codebox][codebox animation="3,appear"]--- # Example 2
+  key:
+    [color=blue]&anchor
+
+    !tag[/color]
+    [color=lime]!t &a[/color] a: 1
+  [/codebox][/horizontal]
+---
+title: Anchors and Tags while parsing
+content: |
+  [title][/title]
+  [list]
+  [*]During parsing, you sometimes don't know to which node they belong until later
+  [/list]
+  [horizontal][codebox animation="1,appear"]--- # Example 3
+  key:
+    !tag
+    &anchor [color=#cccccc](unparsed content)[/color]
+
+  --- # After parsing
+  key:
+    [color=blue]!tag[/color]
+    [color=lime]&anchor[/color] a: 1
+  [/codebox][codebox animation="2,appear"]--- # Example 4
+  key:
+    !tag
+    &anchor [color=#cccccc](unparsed content)[/color]
+
+  --- # After parsing
+  key:
+    [color=lime]!tag
+    &anchor[/color] scalar
+  [/codebox][/horizontal]
+---
+title: Content on starting line
+content: |
+  [title][/title]
+  [list]
+  [*]You can start nodes on the same line as '---'
+  [/list]
+  [horizontal][codebox]--- text
+  --- &anchor |
+  some
+  lines
+  --- "string" # a comment
+  --- > # folded block scalar
+  more
+  lines
+  [/codebox][/horizontal]
+---
+title: Mappings on starting line
+content: |
+  [title][/title]
+  [list]
+  [*]Frameworks' opinions differ on this...
+  [/list]
+  [horizontal][codebox animation="1,appear"]# trivial for
+  # one line
+
+  --- a: 1
+
+
+  # [b]valid[/b] for:
+  # [color=blue]js-yaml[/color]
+  # [color=lime]libsyck[/color]
+
+  # [b]invalid[/b] for:
+  # libyaml, ruby
+  # psych, snakeyaml,
+  # yaml-cpp, luajit
+  [/codebox][codebox animation="2,appear"]# what about
+  # two entries?
+
+  --- a: 1
+  b: 2
+
+  # [b]valid[/b] for:
+  # [color=lime]libsyck[/color]
+
+  # [b]invalid[/b] for:
+  # [color=blue]js-yaml[/color]
+  [/codebox][codebox animation="3,appear"]# what's the correct
+  # indentation?
+
+  --- a: 1
+      b: 2
+
+  # [b]valid[/b] for:
+  # [color=blue]js-yaml[/color]
+
+  # [b]invalid[/b] for:
+  # [color=lime]libsyck[/color]
+  [/codebox][/horizontal]
+---
+title: Block Scalars
+content: |
+  [title][/title]
+  [list]
+  [*]There are two kinds of Block Scalars
+  [*]Literal
+  [*]Folded
+  [/list]
+---
+title: Literal Block Scalars
+content: |
+  [title][/title]
+  [horizontal][codebox]---
+  literal: |
+    keeps content including trailing spaces[trspace]  [/trspace]
+
+    and newlines
+
+  # JSON
+  {
+    "literal": "keeps content including trailing spaces  \n\nand newlines\n"
+  }
+  [/codebox][/horizontal]
+---
+title: Folded Block Scalars
+content: |
+  [title][/title]
+  [horizontal][codebox]---
+  a: >
+    lines
+    are folded except
+
+    there is an empty line
+  b: >
+    or a
+      more
+    indented line
+
+  # JSON
+  {
+    "a": "lines are folded except\nthere is an empty line\n",
+    "b": "or a\n  more\nindented line\n"
+  }
+  [/codebox][/horizontal]
+---
+title: Indicators for Block Scalar
+content: |
+  [title][/title]
+  [list]
+  [*]Block Scalars also can have:
+  [*]Indentation Indicators
+  [*]Chomping Indicators
+  [/list]
+---
+title: Implicit Keys
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]What's an implicit Mapping Key?
+  [*]Most of the YAML you are working with is probably using implicit keys
+  [/list]
+  [codebox animation="5,appear"]---
+  key1: a [comment]# all implicit keys[/comment]
+  key2: b
+  key3: c
+  [/codebox]
+  [list animation="6,greyin"]
+  [*]But implicit keys are limited:
+  [*]Must be on one line (and only up to 1024 characters)
+  [*]Can only be scalars or flow nodes
+  [/list]
+---
+title: Explicit Keys
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Sometimes you want to have a mapping or a sequence as a mapping key
+  [*]Perl and many other languages don't support that natively, but you can do it in YAML
+  [*]Sometimes you want to break your key into multiple lines for readability
+  [/list]
+  [codebox animation="5,appear"]---
+  [color=fuchsia]?[/color] simple explicit key
+  [color=fuchsia]:[/color] simple value
+
+  [color=fuchsia]?[/color] inner key: inner value [comment]# this map is a key of the outer map[/comment]
+  [color=fuchsia]:[/color] outer value
+
+  [color=fuchsia]?[/color] this is a
+    very long key broken
+    into several
+    lines
+  [color=fuchsia]:[/color] and a short value
+
+  [color=fuchsia]?[/color] some explicit key
+  [comment]# but the value is actually optional![/comment]
+  [/codebox]
+
+---
+title: Explicit Keys and Ambiguity
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Do you remember empty mapping keys?
+  [/list]
+  [codebox animation="5,appear"]---
+  ? key [comment animation="6,appear"]  # explicit key "key"[/comment]
+  : value [comment animation="7,appear"]# explicit value "value"[/comment]
+  : value [comment animation="8,appear"]# empty key and value "value"[/comment]
+  [/codebox]
+
+---
+title: Flow Style
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Sometimes YAML is too verbose
+  [*]So you can use a style similar to JSON
+  [/list]
+  [codebox animation="5,appear"]---
+  the alphabet:
+  - a
+  - b
+  - c
+  - ...
+  # uh, no fun
+  [/codebox][br]
+  [codebox animation="6,appear"]---
+  the alphabet: [a, b, c, d, e,
+    f, g, h, ...]
+  [/codebox]
+  [list animation="10,greyin"]
+  [*]No quotes necessary in many cases
+  [*]You can have trailing commas!
+  [/list]
+---
+title: Flow nodes as mapping keys
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]A mapping key can also be a flow node
+  [*]and it doesn't need to be explicit!
+  [*]So you have to stack events in some cases
+  [/list]
+  [codebox animation="5,appear"]---
+  # Just a flow node
+  [a, b, c]
+  [/codebox]
+  [codebox animation="6,appear"]---
+  # Flow node as a key
+  [a, b, c][color=fuchsia]: value[/color]
+  [/codebox]
+  [br]
+  [codebox animation="5,appear"]Events            
+
+  sequence-start
+  scalar a
+  scalar b
+  scalar c
+  sequence-end
+
+
+  [/codebox]
+  [codebox animation="6,appear"]Events              
+  [color=fuchsia]mapping-start[/color]
+  sequence-start
+  scalar a
+  scalar b
+  scalar c
+  sequence-end
+  scalar value
+  [color=fuchsia]mapping-end[/color]
+  [/codebox]
+
+---
+title: Can we fix this?
+content: |
+  [h1]Can we fix this?[/h1]
+  [list animation="1,greyin"]
+  [*]We could create YAML 1.3
+  [*]Let's talk about that in some minutes
+  [*]We could make implementation easier
+  [/list]
+---
+title: The YAML 1.2 Spec
+content: |
+  [h1]The YAML 1.2 Spec[/h1]
+  [list animation="1,greyin"]
+  [*]The PDF has 84 pages
+  [*]It has a lot of examples
+  [*]...but not enough
+  [*]It has very few invalid examples
+  [*]To implement a parser with tests, you would copy all the examples and add expected output in your language's native data format
+  [/list]
+---
+title: NO FUN!
+content: |
+  [title][/title]
+  [br][br][br][br]
+  [h1][img=iggy-pop-no-fun.jpg]NO FUN![/img][/h1]
+  [br][br][br][br]
+  [color=grey]https://i.ytimg.com/vi/YH79JNa0lpg/hqdefault.jpg[/color]
+---
+title: Enter YAML Test Suite
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]In 2016, Ingy started the yaml-test-suite project
+  [*]It is not complete, but has a lot of tests already
+  [*]It can be used to test parsing language independently
+  [*]It can also be used to test the whole loading process, but since this is language dependent, it is limited
+  [*]At some point Felix "flyx" Krause joined the project
+  [*]He was implementing a (very fast) YAML parser in the Nim language
+  [*]He turned almost all of the Spec examples into Test Suite tests
+  [/list]
+---
+title: YAML Loading, Parsing and Constructing
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Before showing the test suite, we should talk about loading, parsing and constructing first
+  [*]We can divide the process of loading a YAML Stream into parsing and constructing.
+  [*]Parsing suceeds if the YAML is valid
+  [*]It returns a series of events, but it doesn't know anything about its contents, though
+  [*]Constructing takes these events and decides about numbers, booleans, tags
+  [*]and finally creates a data structure
+  [*]Let's have a closer look at loading a document
+  [/list]
+---
+title: Loading Process
+content: |
+  [title][/title]
+  [horizontal][codebox]# YAML
+  [span animation='1,greyin']---[/span]
+  [span animation='2,greyin']key a: [/span][span animation="3,greyin"]1[/span]
+  [span animation='4,greyin']key b: [/span]
+  [span animation="5,greyin"]- item 1[/span]
+  [span animation="6,greyin"]- item 2[/span]
+  [/codebox][codebox]parse ->[/codebox][codebox]Events
+  [span]1. stream-start[/span]
+  [span animation="1,appear"]2. document-start[/span]
+  [span animation="2,appear"]3. mapping-start[/span]
+  [span animation="2,appear"]4. scalar 'key a'[/span]
+  [span animation="3,appear"]5. scalar '1'[/span]
+  [span animation="4,appear"]6. scalar 'key b'[/span]
+  [span animation="5,appear"]7. sequence-start[/span]
+  [span animation="5,appear"]8. scalar 'item 1'[/span]
+  [span animation="6,appear"]9. scalar 'item 2'[/span]
+  [span animation="7,appear"]10. sequence-end[/span]
+  [span animation="8,appear"]11. mapping-end[/span]
+  [span animation="9,appear"]12. document-end[/span]
+  [span animation="10,appear"]13. stream-end[/span]
+  [/codebox][codebox]construct ->[/codebox][codebox]# Perl
+  [span animation="1,appear"]$document = [/span][span animation="2,appear"]{
+      'key a' => [/span][span animation="3,appear"]1,[/span]
+  [span animation="4,appear"]    'key b' => [/span][span animation="5,appear"][
+          'item 1',[/span]
+  [span animation="6,appear"]        'item 2',[/span]
+  [span animation="7,appear"]    ],[/span]
+  [span animation="8,appear"]}[/span][span animation="9,appear"];[/span]
+  [/codebox][/horizontal]
+---
+title: Implementing Parser and Loader
+content: |
+  [h1]Implementing Parser and Loader[/h1]
+  [list animation="1,greyin"]
+  [*]It's useful to divide your implementation into those two steps
+  [*]You can use the test suite to test parsing
+  [*]The code is easier to read and to debug
+  [*]It's possible to use different loaders and parsers
+  [/list]
+---
+title: Test Suite Event Format
+content: |
+  [title][/title]
+  [horizontal][codebox]# Events
+  1. stream-start
+  2. document-start
+  3. mapping-start
+  4. scalar 'key a'
+  5. scalar '1'
+  6. scalar 'key b'
+  7. sequence-start
+  8. scalar 'item 1'
+  9. scalar 'item 2'
+  10. sequence-end
+  11. mapping-end
+  12. document-end
+  13. stream-end
+  [/codebox][codebox animation="1,appear"] # Test Suite Format
+  +STR
+  +DOC
+  +MAP
+  =VAL :key a
+  =VAL :1
+  =VAL :key b
+  +SEQ
+  =VAL :item 1
+  =VAL :item 2
+  -SEQ
+  -MAP
+  -DOC
+  -STR
+  [/codebox][/horizontal]
+
+---
+title: Test Suite Tests
+content: |
+  [title][/title]
+  [list]
+  [*]The test suite contains almost 200 tests in TestML format
+  [/list][codebox]=== Spec Example 2.4. Sequence of Mappings
+  from: http://www.yaml.org/spec/1.2/spec.html#id2760193
+  tags: sequence mapping spec
+
+  +++ in-yaml
+  ...
+
+  +++ out-yaml
+  ...
+
+  +++ in-json
+  ...
+
+  +++ test-event
+  ...
+  [/codebox]
+---
+title: Test Suite Data
+content: |
+  [title][/title]
+  For convenience, the 'data' branch contains all data for each test in seperate files
+  [codebox]229Q/
+  ├── ===
+  ├── in.json
+  ├── in.yaml
+  ├── out.yaml
+  └── test.event
+  27NA/
+  ├── ===
+  ├── in.json
+  ├── in.yaml
+  └── test.event
+  ...
+  [/codebox]
+---
+title: Now testing is easy
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Now, if you develop a parser, all you have to do is use the test suite repository and start hacking
+  [/list]
+---
+title: FUN!
+content: |
+  [title][/title]
+  [br][br][br]
+  [h1][img=fun.jpg]FUN![/img][/h1]
+  [small][color=grey]Portland, 2016[/color][/small]
+---
+title: Test other Frameworks
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]You have a YAML document and want to see how several frameworks are parsing it
+  [*]Like YAML.pm, YAML::XS, YAML::Syck, YAML::Tiny, libyaml,
+  [*]pyyaml, js-yaml, Java snakeyaml, yaml-cpp, Ruby psych,
+  [*]ruamel, LuaJIT, Perl6 YAMLish, NimYAML, ...
+  [*]Do you have to install all of them?
+  [/list]
+---
+title: Enter YAML Editor
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]In 2016, Ingy started the YAML Editor
+  [*]It consists of two parts:
+  [*]It creates a Docker Image with a list of scripts/binaries for several frameworks
+  [*]It starts an editor in that Docker container
+  [*]Clone the editor repository and run yaml-editor
+  [*]It will pull the Docker image
+  [/list]
+  [codebox animation="10,appear"]git clone https://github.com/yaml/yaml-editor
+  cd yaml-editor
+  source .rc
+  yaml-editor -l[/codebox]
+---
+title: YAML Editor Framework list
+content: |
+  [title][/title]
+  [codeboxsmall]+----+-------------------+--------------------------+---------------+
+  | #  | View Name         | YAML Framework           | Output Format |
+  +----+-------------------+--------------------------+---------------+
+  |  1 | cpp.event         | C++ yaml-cpp             | Event Stream  |
+  |  2 | java.event        | Java SnakeYAML           | Event Stream  |
+  |  3 | java.json         | Java SnakeYAML           | JSON          |
+  |  4 | js-yaml.json      | Javascript js-yaml       | JSON          |
+  |  5 | libyaml.event     | C libyaml                | Event Stream  |
+  |  6 | libyaml.yaml      | C libyaml                | YAML          |
+  |  7 | luajit.json       | Lua yaml                 | JSON          |
+  |  8 | nimyaml.event     | Nim NimYAML              | Event Stream  |
+  |  9 | perl5-pegex.event | Perl 5 YAML::Pegex       | Event Stream  |
+  | 10 | perl5-pm.json     | Perl 5 YAML.pm           | JSON          |
+  | 11 | perl5-pm.pl       | Perl 5 YAML.pm           | Native Data   |
+  | 12 | perl5-pp.event    | Perl 5 YAML::PP          | Event Stream  |
+  | 13 | perl5-pp.json     | Perl 5 YAML::PP          | JSON          |
+  | 14 | perl5-pp.pl       | Perl 5 YAML::PP          | Native Data   |
+  | 15 | perl5-syck.json   | Perl 5 YAML::Syck        | JSON          |
+  | 16 | perl5-syck.pl     | Perl 5 YAML::Syck        | Native Data   |
+  | 17 | perl5-tiny.json   | Perl 5 YAML::Tiny        | JSON          |
+  | 18 | perl5-tiny.pl     | Perl 5 YAML::Tiny        | Native Data   |
+  | 19 | perl5-xs.json     | Perl 5 YAML::XS          | JSON          |
+  | 20 | perl5-xs.pl       | Perl 5 YAML::XS          | Native Data   |
+  | 21 | perl6.json        | Perl 6 YAMLish           | JSON          |
+  | 22 | perl6.p6          | Perl 6 YAMLish           | Native Data   |
+  | 23 | pyyaml.event      | Python pyyaml            | Event Stream  |
+  | 24 | pyyaml.py         | Python pyyaml            | Native Data   |
+  | 25 | ref.yeast         | Haskell Reference Parser | YEAST Events  |
+  | 26 | ruamel.event      | Python ruamel            | Event Stream  |
+  | 27 | ruamel.py         | Python ruamel            | Native Data   |
+  | 28 | ruby.json         | - -                      | JSON          |
+  +----+-------------------+--------------------------+---------------+
+  [/codeboxsmall]
+---
+title: YAML Editor Example 1
+content: |
+  [h2][pre]yaml-editor libyaml.event perl5-xs.pl[/pre][/h2]
+  [codeboxsmall][include="ye1.html"]
+  [/codeboxsmall]
+---
+title: YAML Editor Example 2
+content: |
+  [h2][pre]yaml-editor -g /.pl[/pre][/h2]
+  [codeboxsmall][include="ye2.html"]
+  [/codeboxsmall]
+---
+title: YAML Editor Example 3
+content: |
+  [h2][pre]yaml-editor -g /perl5[/pre][/h2]
+  [codeboxsmall][include="ye3.html"]
+  [/codeboxsmall]
+---
+title: YAML Editor Example 4
+content: |
+  [h2][pre]yaml-editor -g /.json[/pre][/h2]
+  [codeboxsmall][include="ye4.html"]
+  [/codeboxsmall]
+---
+title: YAML Editor Example 5
+content: |
+  [h2][pre]yaml-editor -g /.event[/pre][/h2]
+  [codeboxsmall][include="ye5.html"]
+  [/codeboxsmall]
+---
+title: YAML Editor Example 6
+content: |
+  [h2][pre]yaml-editor -g /perl.*json[/pre][/h2]
+  [codeboxsmall][include="ye6.html"]
+  [/codeboxsmall]
+---
+title: YAML Editor Example 7
+content: |
+  Type \g # for a github gist
+  [codeboxsmall][include="ye7.html"]
+  [/codeboxsmall]
+  [url=https://gist.github.com/e57f87049f5de1ba0f37bd49619cc129]https://gist.github.com/e57f87049f5de1ba0f37bd49619cc129[/url]
+---
+title: YAML Editor
+content: |
+  [title]FUN![/title]
+---
+title: What can we do with this?
+content: |
+  [title][/title]
+---
+title: Fix YAML.pm?
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]At the end of 2016, I went over a large number of old RT Tickets for YAML.pm
+  [*]I created pull requests from patches
+  [*]I wrote some pull requests myself
+  [*]I realized that it's impossible to fix remaining issues because:
+  [*]It would require a lot of refactoring
+  [*]It would "break" behaviour that people already rely on
+  [*]I thought of writing a new parser from scratch
+  [/list]
+
+---
+title: Enter YAML::PP
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]So, on New Years Day 2017 I started to write it
+  [*]YAML::PP::Parser can parse a lot of YAML already
+  [*]No support for flow style yet, though
+  [*]It also contains a loader which constructs the data from the parser events
+  [*]It is unique among the Perl YAML Loaders because:
+  [*]It supports Booleans (via boolean.pm or JSON::PP::Boolean)
+  [*]That means you can load from YAML and dump to JSON, and booleans will survive!
+  [*]Tags are not supported yet
+  [*]Lots to do!
+  [/list]
+---
+title: Testing YAML::PP
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]It really was fun
+  [*]I had all the tests from the Test Suite
+  [*]And I had the YAML Editor, so I could always check how Framework X would handle something
+  [*]But I was curious...
+  [/list]
+---
+title: Framework Comparison
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]I knew how many tests [b]my[/b] parser was passing
+  [*]But how did the [b]other[/b] frameworks perform?
+  [*]Everything was already there to find out
+  [*]So I wrote a script that runs every test from the Test Suite against every framework built into the YAML Editor Docker Image
+  [*]It compares the event format and JSON output
+  [*]It creates a HTML matrix
+  [/list]
+---
+title: Enter The Matrix
+content: |
+  [title][/title]
+  [h2 animation="5,appear"]
+  [img=the-matrix.jpg]The Matrix[/img][br]
+  No, not this one
+  [/h2]
+---
+title: Enter YAML Test Matrix
+content: |
+  [title][/title]
+  [url=http://matrix.yaml.io/]YAML-Test-Matrix[/url]
+
+---
+title: So, what about YAML 1.3?
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]As we can see from the Test Matrix, YAML is too complicated
+  [*]Many features aren't really necessary
+  [*]Ingy and Flyx had some ideas about a new version last year
+  [*]While I was implementing YAML::PP I sure wished some "features" didn't exist
+  [*]But it all started to become serious in May...
+  [/list]
+---
+title: Perl Toolchain & YAML Summit
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Ingy was invited to the Perl Toolchain Summit 2017 in Lyon
+  [*](Formerly known as Perl QA Hackathons)
+  [*]He wanted to come to Berlin before
+  [*]The idea of the first YAML Summit was born, and luckily Flyx was able to come from Stuttgart spontaneously
+  [/list]
+---
+title: YAML Summit
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]The main topic was how to make the next version easier to implement
+  [*]And stay compatible with the most common YAML documents
+  [*]So we created a couple of RFCs about removing the "features" I was talking about earlier
+  [*]https://github.com/yaml/summit.yaml.io/wiki/YAML-RFC-Index
+  [/list]
+---
+title: Perl Toolchain Summit
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]For my organization of the QA Hackathon 2015, the Hackathon crew thouhgt they owe me an invitation
+  [*]About two weeks before the 2017 Summit, Chad Granum had to cancel
+  [*]So I was invited to Lyon, too, and Ingy and I flew there together
+  [/list]
+---
+title: YAML at Perl Toolchain Summit (PTS)
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Ingy had long planned to move YAML.pm to YAML::Old but hadn't gotten to it, so it existed only as a copy
+  [*]We copied the current YAML.pm code over to YAML::Old again
+  [*]We made a plan for YAML.pm offering a new API while still supporting the old one
+  [*]So if you do `use YAML qw/ Load /` it will use YAML::Old behind the scenes
+  [*]The new API isn't finished
+  [*]For now it is using my code from YAML::PP to parse and construct
+  [*]We released a developer version
+  [/list]
+  http://act.qa-hackathon.org/qa2017/wiki?node=Results
+---
+title: Wait, What about Perl 6?
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Oh right, I haven't mentioned it much, but:
+  [*]At the Toolchain Summit Tony O'Dell implemented a very simple YAML Loader
+  [*]by writing a binding to libyaml
+  [*]Bindings to C libraries are easier than in perl5
+  [*]At the same time, Curt Tilmes, not at the Summit, did the same thing, but more complete
+  [*]We took over Curt's code to write it the same way we would like to have the perl5 API look like
+  [*]I've been hacking on this during the last weeks, and you can already use it
+  [*]Only Tags aren't implemented yet
+  [*]The inner API will change, the outer probably not
+  [/list]
+  [codebox]use v6;
+  use YAML;
+  my %hash = yaml.load($yaml);
+  my @documents = yaml.all.load($yaml);
+  [/codebox]
+---
+title: End
+content: |
+  [title][/title]

@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-store" />
+<title>YAML Editor Example 5</title>
+<link rel="prev" href="slide047.html" />
+<link rel="next" href="slide049.html" />
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bbslides.js"></script>
+<script src="js/navi.js"></script>
+<link rel="stylesheet" type="text/css" href="css/slides.css">
+<link rel="stylesheet" type="text/css" href="css/ansicolor.css">
+</head>
+
+<body>
+<!--
+<div id="test"></div>
+-->
+<div id="bbslides-slide" class="bbslides-frame">
+<h2 id="node_1" class="bbslides-h2"><pre id="node_2">yaml-editor -g /.event</pre></h2>
+<div id="node_3" class="codebox codeboxsmall"><span class="magenta">---</span><span class="">                      </span><span class="on_black white">|</span><span class="yellow">  1 </span><span class="">Exception in thread &quot;</span><span class="on_black white">|</span><span class="">+STR                     </span><span class="on_black white">|</span><span class="">+STR
+</span><span class="cyan">sequence</span><span class="magenta">:</span><span class="">                </span><span class="on_black white">|</span><span class="yellow">    </span><span class="">main&quot; while scanning </span><span class="on_black white">|</span><span class="">+DOC                     </span><span class="on_black white">|</span><span class="">+DOC ---
+</span><span class="yellow">-</span><span class="yellow on_blue"> </span><span class="on_blue">      </span><span class="">tab              </span><span class="on_black white">|</span><span class="yellow">    </span><span class="">for the next token   </span><span class="on_black white">|</span><span class="">+MAP                     </span><span class="on_black white">|</span><span class="">+MAP
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="yellow">  2 </span><span class="">found character &#39;\t(T</span><span class="on_black white">|</span><span class="">=VAL :sequence           </span><span class="on_black white">|</span><span class="">=VAL :sequence
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="yellow">    </span><span class="">AB)&#39; that cannot star</span><span class="on_black white">|</span><span class="">+SEQ                     </span><span class="on_black white">|</span><span class="">+SEQ
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="yellow">    </span><span class="">t any token. (Do not </span><span class="on_black white">|</span><span class="">=VAL :tab                </span><span class="on_black white">|</span><span class="">=VAL :tab
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="yellow">    </span><span class="">use \t(TAB) for inden</span><span class="on_black white">|</span><span class="">-SEQ                     </span><span class="on_black white">|</span><span class="">-SEQ
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="yellow">    </span><span class="">tation)              </span><span class="on_black white">|</span><span class="">-MAP                     </span><span class="on_black white">|</span><span class="">-MAP
+</span><span class="bold blue">~                        </span><span class="on_black white">|java.event   1,1      Top cpp.event    1,1      Top &lt;l5-pp.event 1,1      Top
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">+STR                     </span><span class="on_black white">|</span><span class="">+STR                     </span><span class="on_black white">|</span><span class="">Parse error: found charac
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">+DOC ---                 </span><span class="on_black white">|</span><span class="">+DOC ---                 </span><span class="on_black white">|</span><span class="">ter that cannot start any
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">+MAP                     </span><span class="on_black white">|</span><span class="">+MAP                     </span><span class="on_black white">|</span><span class=""> token
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">=VAL :sequence           </span><span class="on_black white">|</span><span class="">=VAL :sequence           </span><span class="on_black white">|</span><span class="">+STR
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">+SEQ                     </span><span class="on_black white">|</span><span class="">+SEQ                     </span><span class="on_black white">|</span><span class="">+DOC ---
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">=VAL :tab                </span><span class="on_black white">|</span><span class="">=VAL :tab                </span><span class="on_black white">|</span><span class="">+MAP
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">-SEQ                     </span><span class="on_black white">|</span><span class="">-SEQ                     </span><span class="on_black white">|</span><span class="">=VAL :sequence
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">-MAP                     </span><span class="on_black white">|</span><span class="">-MAP                     </span><span class="on_black white">|</span><span class="">+SEQ
+</span><span class="bold blue">~                        </span><span class="on_black white">|&lt;pegex.event 1,1      Top &lt;myaml.event 1,1      Top &lt;byaml.event 1,1      All
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">+STR                                  </span><span class="on_black white">|</span><span class="">+STR
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">+DOC                                  </span><span class="on_black white">|</span><span class="">+DOC
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">+MAP                                  </span><span class="on_black white">|</span><span class="">+MAP
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">=VAL :sequence                        </span><span class="on_black white">|</span><span class="">=VAL :sequence
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">+SEQ                                  </span><span class="on_black white">|</span><span class="">+SEQ
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="">Traceback (most recent call last):    </span><span class="on_black white">|</span><span class="">Traceback (most recent call last):
+</span><span class="bold blue">~                        </span><span class="on_black white">|</span><span class="bold blue">@                                     </span><span class="on_black white">|</span><span class="bold blue">@
+</span><span class="bold on_black white">input.yaml   3,5-11   All </span><span class="on_black white">pyyaml.event        1,1            Top ruamel.event        1,1            Top
+</span><span class="">&quot;pyyaml.event&quot; 23L, 928C
+</span>
+
+</div>
+</div>
+<script type="text/javascript">
+
+var prev_page = 'slide047.html';
+var next_page = 'slide049.html';
+</script>
+<div id="bbslides-navi">
+Slide 48/65
+<a href="slide047.html" onclick="previous_step();return false">BACK</a>
+<a href="index.html">UP</a>
+<a href="slide049.html" onclick="next_step(); return false">NEXT</a>
+<span id="usage">next: ( space or -&gt; ) | previous: ( backspace or &lt;- ) |
+next page: ( page down ) | previous page: ( page up ) |
+index: ( arrow-up )</span>
+
+<br>
+<progress id="slide-progress" value="48" max="65"></progress>
+</div>
+</body>
+</html>

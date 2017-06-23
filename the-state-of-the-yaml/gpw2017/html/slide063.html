@@ -1,0 +1,49 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-store" />
+<title>YAML at Perl Toolchain Summit (PTS)</title>
+<link rel="prev" href="slide062.html" />
+<link rel="next" href="slide064.html" />
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bbslides.js"></script>
+<script src="js/navi.js"></script>
+<link rel="stylesheet" type="text/css" href="css/slides.css">
+<link rel="stylesheet" type="text/css" href="css/ansicolor.css">
+</head>
+
+<body>
+<!--
+<div id="test"></div>
+-->
+<div id="bbslides-slide" class="bbslides-frame">
+<h1 id="node_1" class="bbslides-h1">YAML at Perl Toolchain Summit (PTS)</h1>
+<ul><li id="node_3">Ingy had long planned to move YAML.pm to YAML::Old but hadn&#39;t gotten to it, so it existed only as a copy</li><li id="node_4">We copied the current YAML.pm code over to YAML::Old again</li><li id="node_5">We made a plan for YAML.pm offering a new API while still supporting the old one</li><li id="node_6">So if you do `use YAML qw/ Load /` it will use YAML::Old behind the scenes</li><li id="node_7">The new API isn&#39;t finished</li><li id="node_8">For now it is using my code from YAML::PP to parse and construct</li><li id="node_9">We released a developer version</li></ul>
+http://act.qa-hackathon.org/qa2017/wiki?node=Results
+</div>
+<script type="text/javascript">
+register_animation('node_3', 2, 'greyin', {});
+register_animation('node_4', 3, 'greyin', {});
+register_animation('node_5', 4, 'greyin', {});
+register_animation('node_6', 5, 'greyin', {});
+register_animation('node_7', 6, 'greyin', {});
+register_animation('node_8', 7, 'greyin', {});
+register_animation('node_9', 8, 'greyin', {});
+
+var prev_page = 'slide062.html';
+var next_page = 'slide064.html';
+</script>
+<div id="bbslides-navi">
+Slide 63/65
+<a href="slide062.html" onclick="previous_step();return false">BACK</a>
+<a href="index.html">UP</a>
+<a href="slide064.html" onclick="next_step(); return false">NEXT</a>
+<span id="usage">next: ( space or -&gt; ) | previous: ( backspace or &lt;- ) |
+next page: ( page down ) | previous page: ( page up ) |
+index: ( arrow-up )</span>
+
+<br>
+<progress id="slide-progress" value="63" max="65"></progress>
+</div>
+</body>
+</html>

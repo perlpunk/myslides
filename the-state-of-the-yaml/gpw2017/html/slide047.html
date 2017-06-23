@@ -1,0 +1,71 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-store" />
+<title>YAML Editor Example 4</title>
+<link rel="prev" href="slide046.html" />
+<link rel="next" href="slide048.html" />
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bbslides.js"></script>
+<script src="js/navi.js"></script>
+<link rel="stylesheet" type="text/css" href="css/slides.css">
+<link rel="stylesheet" type="text/css" href="css/ansicolor.css">
+</head>
+
+<body>
+<!--
+<div id="test"></div>
+-->
+<div id="bbslides-slide" class="bbslides-frame">
+<h2 id="node_1" class="bbslides-h2"><pre id="node_2">yaml-editor -g /.json</pre></h2>
+<div id="node_3" class="codebox codeboxsmall"><span class="cyan">bool</span><span class="magenta">:</span><span class=""> </span><span class="red">true</span><span class="">          </span><span class="on_black white">|</span><span class="yellow">  1 </span><span class="magenta">{</span><span class="">               </span><span class="on_black white">|</span><span class="magenta">{</span><span class="">                   </span><span class="on_black white">|</span><span class="magenta">{</span><span class="">                  </span><span class="on_black white">|</span><span class="magenta">{
+</span><span class="cyan">int</span><span class="magenta">:</span><span class=""> </span><span class="red">1</span><span class="">              </span><span class="on_black white">|</span><span class="yellow">  2 </span><span class="">  &quot;</span><span class="yellow">bool</span><span class="">&quot;: </span><span class="red">true</span><span class="">, </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">bool</span><span class="">&quot;: </span><span class="red">true</span><span class="">,     </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">bool</span><span class="">&quot;: </span><span class="red">true</span><span class="">,    </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">bool</span><span class="">&quot;: </span><span class="red">1</span><span class="">,
+</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="yellow">  3 </span><span class="">  &quot;</span><span class="yellow">int</span><span class="">&quot;: </span><span class="red">1</span><span class="">      </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">int</span><span class="">&quot;: </span><span class="red">1</span><span class="">          </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">int</span><span class="">&quot;: </span><span class="red">1</span><span class="">         </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">int</span><span class="">&quot;: </span><span class="red">1
+</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="yellow">  4 </span><span class="magenta">}</span><span class="">               </span><span class="on_black white">|</span><span class="magenta">}</span><span class="">                   </span><span class="on_black white">|</span><span class="magenta">}</span><span class="">                  </span><span class="on_black white">|</span><span class="magenta">}
+</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                  </span><span class="on_black white">|</span><span class="bold blue">~
+~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                  </span><span class="on_black white">|</span><span class="bold blue">~
+~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                  </span><span class="on_black white">|</span><span class="bold blue">~
+~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                  </span><span class="on_black white">|</span><span class="bold blue">~
+~                   </span><span class="on_black white">|&lt;jit.json 1,1    All &lt;aml.json 1,1    All &lt;ava.json 1,1   All &lt;-xs.json 1,1    All
+</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="magenta">{</span><span class="">                   </span><span class="on_black white">|</span><span class="magenta">{</span><span class="">                   </span><span class="on_black white">|</span><span class="magenta">{</span><span class="">                  </span><span class="on_black white">|</span><span class="magenta">{
+</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">bool</span><span class="">&quot;: &quot;</span><span class="red">true</span><span class="">&quot;,   </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">bool</span><span class="">&quot;: </span><span class="red">1</span><span class="">,        </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">bool</span><span class="">&quot;: </span><span class="red">true</span><span class="">,    </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">bool</span><span class="">&quot;: &quot;</span><span class="red">true</span><span class="">&quot;,
+</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">int</span><span class="">&quot;: &quot;</span><span class="red">1</span><span class="">&quot;        </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">int</span><span class="">&quot;: </span><span class="red">1</span><span class="">          </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">int</span><span class="">&quot;: </span><span class="red">1</span><span class="">         </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">int</span><span class="">&quot;: </span><span class="red">1
+</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="magenta">}</span><span class="">                   </span><span class="on_black white">|</span><span class="magenta">}</span><span class="">                   </span><span class="on_black white">|</span><span class="magenta">}</span><span class="">                  </span><span class="on_black white">|</span><span class="magenta">}
+</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                  </span><span class="on_black white">|</span><span class="bold blue">~
+~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                  </span><span class="on_black white">|</span><span class="bold blue">~
+~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                  </span><span class="on_black white">|</span><span class="bold blue">~
+~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                  </span><span class="on_black white">|</span><span class="bold blue">~
+~                   </span><span class="on_black white">|&lt;iny.json 1,1    All &lt;yck.json 1,1    All &lt;-pp.json 1,1   All &lt;-pm.json 1,1    All
+</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="magenta">{</span><span class="">                                        </span><span class="on_black white">|</span><span class="magenta">{
+</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">int</span><span class="">&quot;: </span><span class="red">1</span><span class="">,                              </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">bool</span><span class="">&quot;: </span><span class="red">true</span><span class="">,
+</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">bool</span><span class="">&quot;: </span><span class="red">true</span><span class="">                           </span><span class="on_black white">|</span><span class="">  &quot;</span><span class="yellow">int</span><span class="">&quot;: </span><span class="red">1
+</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="magenta">}</span><span class="">                                        </span><span class="on_black white">|</span><span class="magenta">}
+</span><span class="bold blue">~                   </span><span class="on_black white">|</span><span class="bold blue">~                                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                   </span><span class="on_black white">|</span><span class="bold blue">~                                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                   </span><span class="on_black white">|</span><span class="bold blue">~                                        </span><span class="on_black white">|</span><span class="bold blue">~
+~                   </span><span class="on_black white">|</span><span class="bold blue">~                                        </span><span class="on_black white">|</span><span class="bold blue">~
+</span><span class="bold on_black white">&lt;put.yaml 2,6    All </span><span class="on_black white">perl6.json             1,1            All ruby.json             1,1            All
+
+</span>
+
+</div>
+</div>
+<script type="text/javascript">
+
+var prev_page = 'slide046.html';
+var next_page = 'slide048.html';
+</script>
+<div id="bbslides-navi">
+Slide 47/65
+<a href="slide046.html" onclick="previous_step();return false">BACK</a>
+<a href="index.html">UP</a>
+<a href="slide048.html" onclick="next_step(); return false">NEXT</a>
+<span id="usage">next: ( space or -&gt; ) | previous: ( backspace or &lt;- ) |
+next page: ( page down ) | previous page: ( page up ) |
+index: ( arrow-up )</span>
+
+<br>
+<progress id="slide-progress" value="47" max="65"></progress>
+</div>
+</body>
+</html>

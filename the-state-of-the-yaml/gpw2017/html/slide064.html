@@ -1,0 +1,55 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-store" />
+<title>Wait, What about Perl 6?</title>
+<link rel="prev" href="slide063.html" />
+<link rel="next" href="slide065.html" />
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bbslides.js"></script>
+<script src="js/navi.js"></script>
+<link rel="stylesheet" type="text/css" href="css/slides.css">
+<link rel="stylesheet" type="text/css" href="css/ansicolor.css">
+</head>
+
+<body>
+<!--
+<div id="test"></div>
+-->
+<div id="bbslides-slide" class="bbslides-frame">
+<h1 id="node_1" class="bbslides-h1">Wait, What about Perl 6?</h1>
+<ul><li id="node_3">Oh right, I haven&#39;t mentioned it much, but:</li><li id="node_4">At the Toolchain Summit Tony O&#39;Dell implemented a very simple YAML Loader</li><li id="node_5">by writing a binding to libyaml</li><li id="node_6">Bindings to C libraries are easier than in perl5</li><li id="node_7">At the same time, Curt Tilmes, not at the Summit, did the same thing, but more complete</li><li id="node_8">We took over Curt&#39;s code to write it the same way we would like to have the perl5 API look like</li><li id="node_9">I&#39;ve been hacking on this during the last weeks, and you can already use it</li><li id="node_10">Only Tags aren&#39;t implemented yet</li><li id="node_11">The inner API will change, the outer probably not</li></ul>
+<div id="node_12" class="codebox">use v6;
+use YAML;
+my %hash = yaml.load($yaml);
+my @documents = yaml.all.load($yaml);
+</div>
+</div>
+<script type="text/javascript">
+register_animation('node_3', 2, 'greyin', {});
+register_animation('node_4', 3, 'greyin', {});
+register_animation('node_5', 4, 'greyin', {});
+register_animation('node_6', 5, 'greyin', {});
+register_animation('node_7', 6, 'greyin', {});
+register_animation('node_8', 7, 'greyin', {});
+register_animation('node_9', 8, 'greyin', {});
+register_animation('node_10', 9, 'greyin', {});
+register_animation('node_11', 10, 'greyin', {});
+
+var prev_page = 'slide063.html';
+var next_page = 'slide065.html';
+</script>
+<div id="bbslides-navi">
+Slide 64/65
+<a href="slide063.html" onclick="previous_step();return false">BACK</a>
+<a href="index.html">UP</a>
+<a href="slide065.html" onclick="next_step(); return false">NEXT</a>
+<span id="usage">next: ( space or -&gt; ) | previous: ( backspace or &lt;- ) |
+next page: ( page down ) | previous page: ( page up ) |
+index: ( arrow-up )</span>
+
+<br>
+<progress id="slide-progress" value="64" max="65"></progress>
+</div>
+</body>
+</html>

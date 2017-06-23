@@ -1,0 +1,173 @@
+---
+title: BBCode & YAML Powered Presentations
+content: |
+  [title][/title]
+---
+title: The Problem
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]I always prepare my slides at the last minute
+  [*]The German Perl Workshop was approaching
+  [*]I had to choose a presentation software
+  [/list]
+---
+title: Vroom
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Vroom, written by Ingy, is a tiny tool for text based presentations
+  [*]You edit your slides in vim (or any text editor)
+  [*]You present them with vim
+  [*]You only need basic vim knowledge
+  [*]Great for putting slides together very fast, I used it a couple of times
+  [*]It can also export to HTML
+  [/list]
+---
+title: Vroom Limits
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Text only
+  [*]You can only syntax highlight a complete slide with the available vim highlighters
+  [/list]
+---
+title: LibreOffice
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]I started with LibreOffice
+  [*]I wanted to show YAML example and highlight Tabs and Trailing Spaces
+  [*]Couldn't find a way to set the background color of text parts
+  [*]Like this:
+  [/list]
+  [codebox animation="5,flyin"]---
+  String[tab]	[/tab]with[tab]	[/tab]tabs: value with trailing spaces[trspace]    [/trspace]
+  map:      [comment]# comment[/comment]
+  [indent]  [/indent]Indentation
+  [/codebox]
+---
+title: Showing Transitions in one slide
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]I wanted to show the process of YAML Loading in several steps
+  [*]Without duplicating the same text over 10 slides!
+  [/list]
+---
+title: YAML Loading Process
+content: |
+  [title][/title]
+  [horizontal][codebox]# YAML
+  [span animation='1,greyin']---[/span]
+  [span animation='2,greyin']key a: [/span][span animation="3,greyin"]1[/span]
+  [span animation='4,greyin']key b: [/span]
+  [span animation="5,greyin"]- item 1[/span]
+  [span animation="6,greyin"]- item 2[/span]
+  [/codebox][codebox]parse ->[/codebox][codebox]Events
+  [span]1. stream-start[/span]
+  [span animation="1,appear"]2. document-start[/span]
+  [span animation="2,appear"]3. mapping-start[/span]
+  [span animation="2,appear"]4. scalar 'key a'[/span]
+  [span animation="3,appear"]5. scalar '1'[/span]
+  [span animation="4,appear"]6. scalar 'key b'[/span]
+  [span animation="5,appear"]7. sequence-start[/span]
+  [span animation="5,appear"]8. scalar 'item 1'[/span]
+  [span animation="6,appear"]9. scalar 'item 2'[/span]
+  [span animation="7,appear"]10. sequence-end[/span]
+  [span animation="8,appear"]11. mapping-end[/span]
+  [span animation="9,appear"]12. document-end[/span]
+  [span animation="10,appear"]13. stream-end[/span]
+  [/codebox]
+  [codebox]construct ->[/codebox]
+  [codebox]# Perl
+  [span animation="1,appear"]$document = [/span][span animation="2,appear"]{
+      'key a' => [/span][span animation="3,appear"]1,[/span]
+  [span animation="4,appear"]    'key b' => [/span][span animation="5,appear"][
+          'item 1',[/span]
+  [span animation="6,appear"]        'item 2',[/span]
+  [span animation="7,appear"]    ],[/span]
+  [span animation="8,appear"]}[/span][span animation="9,appear"];[/span]
+  [/codebox][/horizontal]
+---
+title: Should be viewable also without Javascript
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]If you open a RemarkJS presentation in a text browser or any browser with disabled Javascript, you see nothing
+  [/list]
+---
+title: Enter App::BBSlides
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]The slides file is a YAML document
+  [*]Each document (slide) is written in BBCode:
+  [*][codebox ]
+  [noparse]
+  [b]bold [i]italic[/i] text[/b]
+  [/noparse]
+  [/codebox]
+  [*]I'm using Parse::BBCode (my own module), which is quite configurable
+  [/list]
+---
+title: Embed HTML
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Sometimes you want to include HTML directly
+  [*]You can do that with [noparse][html]<hr>[/html][/noparse]
+  [*]You can also include content from a file directly:
+  [*][noparse][include=foo.html][/noparse]
+  [/list]
+
+---
+title: Terminal "Screenshots"
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Sometimes you want to do a live demo, but
+  [*]...it could fail
+  [*]...or you want to at least publish some terminal screenshots in your slides
+  [*]Dump your terminal output including ansi color escapes
+  [*](for example with `tmux capture-pane ...`)
+  [*]Use the ansicolor.pl script to convert it to HTML
+  [*]which is just a wrapper around HTML::FromANSI::Tiny by Randy Stauner
+  [/list]
+---
+title: Terminal Screenshot Example
+content: |
+  [title][/title]
+  [pre]% htop[/pre]
+  [codeboxsmall animation="1,flyin"][include=vim.html][/codeboxsmall]
+---
+title: Where to get
+content: |
+  [title][/title]
+  [list]
+  [*]Not on CPAN yet:
+  [*][url=https://github.com/perlpunk/App-BBSlides-p5]https://github.com/perlpunk/App-BBSlides-p5[/url]
+  [/list]
+---
+title: Status
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]Hmm... alpha?
+  [*]Just started it 2 weeks ago
+  [*]I'll use it for The Perl Conference in Amsterdam
+  [*]So I'll [b]have[/b] to work on it
+  [/list]
+---
+title: Ideas
+content: |
+  [title][/title]
+  [list animation="1,greyin"]
+  [*]The BBCode could also be used to create a terminal presentation
+  [*]Don't know if that would be useful
+  [*]But I learned that everything text based makes it [b]really[/b] easy for remote pair programming
+  [/list]
+---
+title: End
+content: |
+  [h1]That's it, thanks![/h1]

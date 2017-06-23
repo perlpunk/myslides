@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-store" />
+<title>Terminal Screenshot Example</title>
+<link rel="prev" href="slide011.html" />
+<link rel="next" href="slide013.html" />
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bbslides.js"></script>
+<script src="js/navi.js"></script>
+<link rel="stylesheet" type="text/css" href="css/slides.css">
+<link rel="stylesheet" type="text/css" href="css/ansicolor.css">
+</head>
+
+<body>
+<!--
+<div id="test"></div>
+-->
+<div id="bbslides-slide" class="bbslides-frame">
+<h1 id="node_1" class="bbslides-h1">Terminal Screenshot Example</h1>
+<pre id="node_2">% htop</pre>
+<div id="node_3" class="codebox codeboxsmall"><span class="">
+  </span><span class="cyan">1  </span><span class="bold">[</span><span class="green">|</span><span class="red">|</span><span class="bold black"> </span><span class="">                        </span><span class="bold black">1.3%</span><span class="bold">]</span><span class="">   </span><span class="cyan">Tasks: </span><span class="cyan bold">147</span><span class="">, </span><span class="bold">388</span><span class=""> thr; </span><span class="bold green">2</span><span class="cyan"> running
+</span><span class="">  </span><span class="cyan">2  </span><span class="bold">[</span><span class="green">|</span><span class="red">|</span><span class="bold black">    </span><span class="">                    </span><span class="bold black"> 2.6%</span><span class="bold">]</span><span class="">   </span><span class="cyan">Load average: </span><span class="bold">0.08 </span><span class="bold cyan">0.10 </span><span class="">0.09
+</span><span class="">  </span><span class="cyan">3  </span><span class="bold">[</span><span class="green">|</span><span class="red">|</span><span class="bold black"> </span><span class="">                        </span><span class="bold black">2.7%</span><span class="bold">]</span><span class="">   </span><span class="cyan">Uptime: </span><span class="cyan bold">3 days, 01:39:22
+</span><span class="">  </span><span class="cyan">4  </span><span class="bold">[</span><span class="green">|</span><span class="bold black">   </span><span class="">                       </span><span class="bold black">0.7%</span><span class="bold">]
+</span><span class="">  </span><span class="cyan">Mem</span><span class="bold">[</span><span class="green">|||||||||</span><span class="blue">|</span><span class="yellow">|||</span><span class="bold black">       1.87G/7.09G</span><span class="bold">]
+</span><span class="">  </span><span class="cyan">Swp</span><span class="bold">[</span><span class="red">||</span><span class="">                   </span><span class="bold black">314M/7.29G</span><span class="bold">]
+
+</span><span class="black on_green">  PID USER      PRI  NI  VIRT   RES   SHR S </span><span class="black on_cyan">CPU% </span><span class="black on_green">MEM%   TIME+  Command
+</span><span class="black on_cyan">  651 root       20   0  327M 53872 30472 R  1.3  0.7 27:52.26 /usr/lib/xorg/Xorg
+</span><span class=""> 4848 tina       20   0 </span><span class="cyan"> 169M 13</span><span class="">016 </span><span class="cyan">11</span><span class="">156 S  1.3  0.2  4:51.02 /usr/lib/x86_64-lin
+29603 </span><span class="bold black">root      </span><span class=""> 20   0 </span><span class="cyan"> 661M 19</span><span class="">348 </span><span class="cyan"> 3</span><span class="">652 S  1.3  0.3  3:04.58 /usr/bin/dockerd -H
+28251 tina       20   0 </span><span class="cyan">50</span><span class="">468 </span><span class="cyan"> 8</span><span class="">752 </span><span class="cyan"> 3</span><span class="">540 S  0.7  0.1  0:11.47 -zsh/lib/chromium/c
+29846 tina</span><span class="bold black">      </span><span class=""> 20   0 </span><span class="cyan">25</span><span class="">008 </span><span class="cyan"> 4</span><span class="">012 </span><span class="cyan"> 2</span><span class="">916 </span><span class="green">R </span><span class=""> 0.7  0.1  0:00.26 htop/bin/dockerd -H
+ 2570 </span><span class="bold black">root      </span><span class=""> 20   0 </span><span class="cyan"> 679M 13</span><span class="">280 </span><span class="cyan"> 8</span><span class="">892 S  0.7  0.2  2:02.46 /usr/sbin/NetworkMa
+ 4844 tina       20   0 </span><span class="cyan"> 327M 18</span><span class="">476 </span><span class="cyan">14</span><span class="">308 S  0.7  0.2  0:57.58 /usr/lib/x86_64-lin
+ 1094 tina       20   0 </span><span class="cyan"> 761M 68</span><span class="">972 </span><span class="cyan">19</span><span class="">400 S  0.0  0.9  0:17.85 xfdesktop
+ 4848 tina       RT </span><span class="green">  1 </span><span class="cyan"> 169M 13</span><span class="">016 </span><span class="cyan">11</span><span class="">156 S  0.0  0.2  4:51.00 /usr/lib/x86_64-lin
+  693 </span><span class="bold black">root      </span><span class=""> 21 </span><span class="green">  1 </span><span class="cyan"> 661M 19</span><span class="">348 </span><span class="cyan"> 3</span><span class="">652 S  0.0  0.3  0:18.40 /usr/bin/dockerd -H
+23008 tina       20   0 </span><span class="cyan">1008M 88</span><span class="">092 </span><span class="cyan">63</span><span class="">436 S  0.0  1.2  0:21.12 avahilib/chromium/c
+ 1090 tina       20   0 </span><span class="cyan"> 420M 26</span><span class="">384 </span><span class="cyan">18</span><span class="">712 S  0.0  0.4  0:44.96 xfce4-panel
+  863 </span><span class="bold black">root      </span><span class=""> 20   0 </span><span class="cyan"> 328M 54</span><span class="">056 </span><span class="cyan">30</span><span class="">656 S  0.0  0.7  1:07.47 /usr/lib/xorg/Xorg
+26484 tina       20   0 </span><span class="cyan"> 662M 88</span><span class="">828 </span><span class="cyan">59</span><span class="">284 S  0.0  1.2  0:02.34 /usr/lib/chromium/c
+23012 tina       20   0 </span><span class="cyan">1008M 88</span><span class="">092 </span><span class="cyan">63</span><span class="">436 S  0.0  1.2  0:04.08 /usr/lib/chromium/c
+ 1095 tina       20   0 </span><span class="cyan"> 381M 11</span><span class="">204 </span><span class="cyan">10</span><span class="">236 S  0.0  0.2  0:15.18 xfsettingsd
+F1</span><span class="black on_cyan">Help  </span><span class="">F2</span><span class="black on_cyan">Setup </span><span class="">F3</span><span class="black on_cyan">Search</span><span class="">F4</span><span class="black on_cyan">Filter</span><span class="">F5</span><span class="black on_cyan">Tree  </span><span class="">F6</span><span class="black on_cyan">SortBy</span><span class="">F7</span><span class="black on_cyan">Nice -</span><span class="">F8</span><span class="black on_cyan">Nice +</span><span class="">F9</span><span class="black on_cyan">Kill  </span><span class="">F10</span><span class="black on_cyan">Quit
+</span>
+</div>
+</div>
+<script type="text/javascript">
+register_animation('node_3', 1, 'flyin', {});
+
+var prev_page = 'slide011.html';
+var next_page = 'slide013.html';
+</script>
+<div id="bbslides-navi">
+Slide 12/16
+<a href="slide011.html" onclick="previous_step();return false">BACK</a>
+<a href="index.html">UP</a>
+<a href="slide013.html" onclick="next_step(); return false">NEXT</a>
+<span id="usage">next: ( space or -&gt; ) | previous: ( backspace or &lt;- ) |
+next page: ( page down ) | previous page: ( page up ) |
+index: ( arrow-up )</span>
+
+<br>
+<progress id="slide-progress" value="12" max="16"></progress>
+</div>
+</body>
+</html>

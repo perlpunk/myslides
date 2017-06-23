@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-store" />
+<title>Implicit Keys</title>
+<link rel="prev" href="slide023.html" />
+<link rel="next" href="slide025.html" />
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bbslides.js"></script>
+<script src="js/navi.js"></script>
+<link rel="stylesheet" type="text/css" href="css/slides.css">
+<link rel="stylesheet" type="text/css" href="css/ansicolor.css">
+</head>
+
+<body>
+<!--
+<div id="test"></div>
+-->
+<div id="bbslides-slide" class="bbslides-frame">
+<h1 id="node_1" class="bbslides-h1">Implicit Keys</h1>
+<ul><li id="node_3">What&#39;s an implicit Mapping Key?</li><li id="node_4">Most of the YAML you are working with is probably using implicit keys</li></ul>
+<div id="node_5" class="codebox">---
+key1: a <span id="node_6" class="bbslides-comment"># all implicit keys</span>
+key2: b
+key3: c
+</div>
+<ul><li id="node_8">But implicit keys are limited:</li><li id="node_9">Must be on one line (and only up to 1024 characters)</li><li id="node_10">Can only be scalars or flow nodes</li></ul>
+</div>
+<script type="text/javascript">
+register_animation('node_3', 2, 'greyin', {});
+register_animation('node_4', 3, 'greyin', {});
+register_animation('node_5', 5, 'appear', {});
+register_animation('node_8', 7, 'greyin', {});
+register_animation('node_9', 8, 'greyin', {});
+register_animation('node_10', 9, 'greyin', {});
+
+var prev_page = 'slide023.html';
+var next_page = 'slide025.html';
+</script>
+<div id="bbslides-navi">
+Slide 24/65
+<a href="slide023.html" onclick="previous_step();return false">BACK</a>
+<a href="index.html">UP</a>
+<a href="slide025.html" onclick="next_step(); return false">NEXT</a>
+<span id="usage">next: ( space or -&gt; ) | previous: ( backspace or &lt;- ) |
+next page: ( page down ) | previous page: ( page up ) |
+index: ( arrow-up )</span>
+
+<br>
+<progress id="slide-progress" value="24" max="65"></progress>
+</div>
+</body>
+</html>

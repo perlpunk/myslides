@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-store" />
+<title>Flow Style</title>
+<link rel="prev" href="slide026.html" />
+<link rel="next" href="slide028.html" />
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bbslides.js"></script>
+<script src="js/navi.js"></script>
+<link rel="stylesheet" type="text/css" href="css/slides.css">
+<link rel="stylesheet" type="text/css" href="css/ansicolor.css">
+</head>
+
+<body>
+<!--
+<div id="test"></div>
+-->
+<div id="bbslides-slide" class="bbslides-frame">
+<h1 id="node_1" class="bbslides-h1">Flow Style</h1>
+<ul><li id="node_3">Sometimes YAML is too verbose</li><li id="node_4">So you can use a style similar to JSON</li></ul>
+<div id="node_5" class="codebox">---
+the alphabet:
+- a
+- b
+- c
+- ...
+# uh, no fun
+</div><br>
+<div id="node_7" class="codebox">---
+the alphabet: [a, b, c, d, e,
+  f, g, h, ...]
+</div>
+<ul><li id="node_9">No quotes necessary in many cases</li><li id="node_10">You can have trailing commas!</li></ul>
+</div>
+<script type="text/javascript">
+register_animation('node_3', 2, 'greyin', {});
+register_animation('node_4', 3, 'greyin', {});
+register_animation('node_5', 5, 'appear', {});
+register_animation('node_7', 6, 'appear', {});
+register_animation('node_9', 11, 'greyin', {});
+register_animation('node_10', 12, 'greyin', {});
+
+var prev_page = 'slide026.html';
+var next_page = 'slide028.html';
+</script>
+<div id="bbslides-navi">
+Slide 27/65
+<a href="slide026.html" onclick="previous_step();return false">BACK</a>
+<a href="index.html">UP</a>
+<a href="slide028.html" onclick="next_step(); return false">NEXT</a>
+<span id="usage">next: ( space or -&gt; ) | previous: ( backspace or &lt;- ) |
+next page: ( page down ) | previous page: ( page up ) |
+index: ( arrow-up )</span>
+
+<br>
+<progress id="slide-progress" value="27" max="65"></progress>
+</div>
+</body>
+</html>

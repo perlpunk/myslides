@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-store" />
+<title>Anchors and Tags while parsing</title>
+<link rel="prev" href="slide016.html" />
+<link rel="next" href="slide018.html" />
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bbslides.js"></script>
+<script src="js/navi.js"></script>
+<link rel="stylesheet" type="text/css" href="css/slides.css">
+<link rel="stylesheet" type="text/css" href="css/ansicolor.css">
+</head>
+
+<body>
+<!--
+<div id="test"></div>
+-->
+<div id="bbslides-slide" class="bbslides-frame">
+<h1 id="node_1" class="bbslides-h1">Anchors and Tags while parsing</h1>
+<ul><li id="node_3">During parsing, you sometimes don&#39;t know to which node they belong until later</li></ul>
+<div id="node_4" class="bbslides-horizontal"><div id="node_5" class="codebox">--- # Example 3
+key:
+  !tag
+  &amp;anchor <span id="node_6" style="color: #cccccc">(unparsed content)</span>
+
+--- # After parsing
+key:
+  <span id="node_7" style="color: blue">!tag</span>
+  <span id="node_8" style="color: lime">&amp;anchor</span> a: 1
+</div><div id="node_9" class="codebox">--- # Example 4
+key:
+  !tag
+  &amp;anchor <span id="node_10" style="color: #cccccc">(unparsed content)</span>
+
+--- # After parsing
+key:
+  <span id="node_11" style="color: lime">!tag
+  &amp;anchor</span> scalar
+</div></div>
+</div>
+<script type="text/javascript">
+register_animation('node_5', 1, 'appear', {});
+register_animation('node_9', 2, 'appear', {});
+
+var prev_page = 'slide016.html';
+var next_page = 'slide018.html';
+</script>
+<div id="bbslides-navi">
+Slide 17/65
+<a href="slide016.html" onclick="previous_step();return false">BACK</a>
+<a href="index.html">UP</a>
+<a href="slide018.html" onclick="next_step(); return false">NEXT</a>
+<span id="usage">next: ( space or -&gt; ) | previous: ( backspace or &lt;- ) |
+next page: ( page down ) | previous page: ( page up ) |
+index: ( arrow-up )</span>
+
+<br>
+<progress id="slide-progress" value="17" max="65"></progress>
+</div>
+</body>
+</html>

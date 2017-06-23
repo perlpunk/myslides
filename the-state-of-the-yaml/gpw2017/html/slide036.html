@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-store" />
+<title>Test Suite Event Format</title>
+<link rel="prev" href="slide035.html" />
+<link rel="next" href="slide037.html" />
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/bbslides.js"></script>
+<script src="js/navi.js"></script>
+<link rel="stylesheet" type="text/css" href="css/slides.css">
+<link rel="stylesheet" type="text/css" href="css/ansicolor.css">
+</head>
+
+<body>
+<!--
+<div id="test"></div>
+-->
+<div id="bbslides-slide" class="bbslides-frame">
+<h1 id="node_1" class="bbslides-h1">Test Suite Event Format</h1>
+<div id="node_2" class="bbslides-horizontal"><div id="node_3" class="codebox"># Events
+1. stream-start
+2. document-start
+3. mapping-start
+4. scalar &#39;key a&#39;
+5. scalar &#39;1&#39;
+6. scalar &#39;key b&#39;
+7. sequence-start
+8. scalar &#39;item 1&#39;
+9. scalar &#39;item 2&#39;
+10. sequence-end
+11. mapping-end
+12. document-end
+13. stream-end
+</div><div id="node_4" class="codebox"> # Test Suite Format
++STR
++DOC
++MAP
+=VAL :key a
+=VAL :1
+=VAL :key b
++SEQ
+=VAL :item 1
+=VAL :item 2
+-SEQ
+-MAP
+-DOC
+-STR
+</div></div>
+</div>
+<script type="text/javascript">
+register_animation('node_4', 1, 'appear', {});
+
+var prev_page = 'slide035.html';
+var next_page = 'slide037.html';
+</script>
+<div id="bbslides-navi">
+Slide 36/65
+<a href="slide035.html" onclick="previous_step();return false">BACK</a>
+<a href="index.html">UP</a>
+<a href="slide037.html" onclick="next_step(); return false">NEXT</a>
+<span id="usage">next: ( space or -&gt; ) | previous: ( backspace or &lt;- ) |
+next page: ( page down ) | previous page: ( page up ) |
+index: ( arrow-up )</span>
+
+<br>
+<progress id="slide-progress" value="36" max="65"></progress>
+</div>
+</body>
+</html>
